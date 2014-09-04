@@ -1,0 +1,9 @@
+ipch
+*.opensdf
+*.sdf
+build
+*.suo
+*.user
+ReadMe.txt
+Debug
+Release
