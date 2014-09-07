@@ -10,7 +10,6 @@
 #endif
 
 #include <rod/rod.hpp>
-#pragma comment( lib , "rod.lib")
 
 
 int _tmain(int argc, _TCHAR* argv[])

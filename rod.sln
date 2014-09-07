@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rod", "src\rod\rod.vcxproj", "{6BED3093-2D37-430D-8720-80BDE9D27FAF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rod_main", "src\rod_main\rod_main.vcxproj", "{DF5E493F-5D5A-4282-BCE6-3D366C521D50}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6BED3093-2D37-430D-8720-80BDE9D27FAF} = {6BED3093-2D37-430D-8720-80BDE9D27FAF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
