@@ -48,6 +48,12 @@
     <ClInclude Include="error\category.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="debug\alloc_tracer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="allocator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="buffer\rc_buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\alloc_tracer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="allocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
