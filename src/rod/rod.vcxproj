@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer\byte_buffer.cpp" />
+    <ClCompile Include="buffer\byte_buffer_ref.cpp" />
     <ClCompile Include="buffer\rc_buffer.cpp" />
     <ClCompile Include="allocator.cpp" />
     <ClCompile Include="debug\alloc_tracer.cpp" />
