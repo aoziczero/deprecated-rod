@@ -8,6 +8,8 @@ namespace buffer{
 
 byte_buffer::byte_buffer(const std::size_t cap)
 	: _buffer(cap)
+	, _rd_pos(0) 
+	, _wr_pos(0)
 {
 
 }

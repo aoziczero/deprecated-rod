@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <rod/buffer/byte_buffer.hpp>
+#include <rod/buffer/byte_buffer_ref.hpp>
 
 TEST(byte_buffer, construct ){
 	rod::buffer::byte_buffer buffer(1024);
@@ -46,5 +47,18 @@ TEST(byte_buffer, read_write) {
 	buffer.adjust();
 	ASSERT_EQ(buffer.length() , 0 );
 	ASSERT_TRUE(buffer.space() == buffer.capacity());
+}
 
+TEST(byte_buffer_ref, basic) {
+	char buffer[1024];
+	char* buf = "testmsg";
+	rod::buffer::byte_buffer_ref ref(buffer, 1024);
+	ASSERT_EQ(ref.capacity(), 1024);
+	ASSERT_EQ(ref.length(), 0);
+
+	ref.write(buf, strlen(buf) + 1);
+
+	ASSERT_STREQ(buffer, buf);
+
+	ASSERT_EQ(ref.length(), strlen(buf) + 1);
 }

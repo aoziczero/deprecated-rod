@@ -23,5 +23,10 @@ void  allocator::free(void* ptr) {
 void*  allocator::realloc(void* ptr, const std::size_t newsz) {
 	return std::realloc(ptr,newsz);
 }
+
+rod::allocator* allocator::default_allocator(void){
+	static rod::allocator _default_allocator;
+	return &_default_allocator;
+}
 	
 }

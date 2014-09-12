@@ -12,10 +12,7 @@ public:
 	virtual void  free( void* ptr );
 	virtual void* realloc(void* ptr, const std::size_t newsz);
 
-	static rod::allocator* default_allocator(void) {
-		static rod::allocator _default_allocator;
-		return &_default_allocator;
-	}
+	static rod::allocator* default_allocator(void);
 private:
 };
 

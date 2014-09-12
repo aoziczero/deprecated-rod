@@ -6,6 +6,7 @@ namespace buffer{
 
 // provide byte buffer interface for user allocated memory
 class byte_buffer_ref {
+public:
 	byte_buffer_ref( void* ptr , const std::size_t cap );
 	byte_buffer_ref(byte_buffer_ref&& rhs);
 	const byte_buffer_ref& operator=(byte_buffer_ref&& rhs);
