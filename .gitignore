@@ -5,5 +5,3 @@ build
 *.suo
 *.user
 ReadMe.txt
-Debug
-Release
