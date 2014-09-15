@@ -42,16 +42,19 @@
     <ClInclude Include="buffer\rc_buffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="error\error.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="error\category.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="debug\alloc_tracer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="allocator.hpp">
+    <ClInclude Include="detail\platform_error_category.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rod_config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tmp\compile_time_error.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="detail\allocator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,10 +74,16 @@
     <ClCompile Include="debug\alloc_tracer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="allocator.cpp">
+    <ClCompile Include="buffer\byte_buffer_ref.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="buffer\byte_buffer_ref.cpp">
+    <ClCompile Include="detail\platform_error_category.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rod_config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="detail\allocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <rod/allocator.hpp>
+#include <rod/detail/allocator.hpp>
 #include <memory>
 
 namespace rod {

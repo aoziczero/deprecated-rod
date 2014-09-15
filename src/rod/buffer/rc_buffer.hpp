@@ -2,7 +2,7 @@
 #define __rod_buffer_rc_buffer_h__
 
 #include <atomic>
-#include <rod/allocator.hpp>
+#include <rod/detail/allocator.hpp>
 
 namespace rod {
 namespace buffer {

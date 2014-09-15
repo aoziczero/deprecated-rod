@@ -2,7 +2,7 @@
 #define __rod_debug_alloc_tracer_h__
 
 #include <set>
-#include <rod/allocator.hpp>
+#include <rod/detail/allocator.hpp>
 
 namespace rod{
 namespace debug{

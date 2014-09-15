@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="test_rod_buffer_rc_buffer.cpp" />
     <ClCompile Include="test_rod_class_level_allocator.cpp" />
+    <ClCompile Include="test_rod_error.cpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClCompile Include="test_rod_buffer_byte_buffer.cpp">

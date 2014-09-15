@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <rod/allocator.hpp>
+#include <rod/detail/allocator.hpp>
 
 class c1 : public rod::class_level_allocator<c1> {
 public:

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include <rod/buffer/byte_buffer.hpp>
-#include <algorithm>
+
 #include <cassert>
 
 namespace rod {
