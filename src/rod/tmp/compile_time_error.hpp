@@ -7,6 +7,7 @@ namespace tmp {
 template < bool > class compile_time_error;
 template <> class compile_time_error< true >{};
 
+
 }}
 
 #endif

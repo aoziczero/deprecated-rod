@@ -78,6 +78,7 @@
     <ClInclude Include="buffer\byte_buffer_ref.hpp" />
     <ClInclude Include="debug\alloc_tracer.hpp" />
     <ClInclude Include="detail\allocator.hpp" />
+    <ClInclude Include="detail\nullable.hpp" />
     <ClInclude Include="tmp\compile_time_error.hpp" />
     <ClInclude Include="detail\platform_error_category.hpp" />
     <ClInclude Include="buffer\rc_buffer.hpp" />
@@ -87,6 +88,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="threading\atomic.hpp" />
     <ClInclude Include="threading\thread.hpp" />
+    <ClInclude Include="tmp\is_bool.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer\byte_buffer.cpp" />
@@ -94,6 +96,7 @@
     <ClCompile Include="buffer\rc_buffer.cpp" />
     <ClCompile Include="detail\allocator.cpp" />
     <ClCompile Include="debug\alloc_tracer.cpp" />
+    <ClCompile Include="detail\nullable.cpp" />
     <ClCompile Include="detail\platform_error_category.cpp" />
     <ClCompile Include="rod_config.cpp" />
     <ClCompile Include="rod.cpp" />

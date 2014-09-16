@@ -11,5 +11,6 @@
 #include <tchar.h>
 
 #include <gtest/gtest.h>
+#include <rod/rod.hpp>
 
 // TODO: reference additional headers your program requires here
