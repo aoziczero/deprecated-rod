@@ -3,6 +3,8 @@
 
 #include <rod/tmp/compile_time_error.hpp>
 #include <rod/tmp/is_bool.hpp>
+#include <rod/detail/aligned_storage.hpp>
+#include <type_traits>
 
 namespace rod {
 
@@ -10,8 +12,7 @@ template < typename object_t >
 class nullable;
 
 namespace impl {
-struct empty {
-};
+struct empty {};
 }
 
 template <>
@@ -39,14 +40,14 @@ public:
 		: _is_null(false)
 	{
 		STATIC_CHECK( rod::tmp::is_bool<object_t>::value == 0  , bool_is_not_allowed );
-		new (_object) object_t(rhs);
+		new (_storage.data()) object_t(rhs);
 	}
 
 	explicit nullable(object_t&& rhs)
 		: _is_null(false)
 	{
 		STATIC_CHECK( rod::tmp::is_bool<object_t>::value == 0  , bool_is_not_allowed );
-		new (_object) object_t(std::move(rhs));
+		new (_storage.data()) object_t(std::move(rhs));
 	}
 
 	nullable( const nullable<impl::empty>& null ) 
@@ -63,7 +64,7 @@ public:
 	const nullable& operator=(const object_t& rhs)
 	{
 		if (_is_null) {
-			new (_object) object_t(rhs);
+			new (_storage.data()) object_t(rhs);
 			_is_null = false;			
 		} else {
 			object_t* obj = get();
@@ -75,7 +76,7 @@ public:
 	const nullable& operator=(object_t&& rhs)
 	{
 		if (_is_null) {
-			new (_object) object_t(std::move(rhs));
+			new (_storage.data()) object_t(std::move(rhs));
 			_is_null = false;
 		} else {
 			object_t* obj = get();
@@ -90,7 +91,7 @@ public:
 		STATIC_CHECK( rod::tmp::is_bool<object_t>::value == 0  , bool_is_not_allowed );	
 		if ( _is_null )
 			return;
-		new (_object) object_t(*rhs);
+		new (_storage.data()) object_t(*rhs);
 	}
 
 	nullable(nullable&& rhs)
@@ -100,7 +101,7 @@ public:
 		if ( _is_null )
 			return;
 
-		new (_object) object_t(std::move(*rhs));
+		new (_storage.data()) object_t(std::move(*rhs));
 		rhs._is_null = true;
 	}
 
@@ -112,7 +113,7 @@ public:
 		} 					
 		object_t* rhs_obj = rhs.get();
 		if (_is_null) {
-			new (_object) object_t(*rhs_obj);
+			new (_storage.data()) object_t(*rhs_obj);
 			_is_null = false;
 		} else {
 			object_t* obj = get();
@@ -129,7 +130,7 @@ public:
 		} 	
 		object_t* rhs_obj = rhs.get();
 		if (_is_null) {
-			new (_object)object_t(std::move(*rhs_obj));
+			new (_storage.data())object_t(std::move(*rhs_obj));
 			_is_null = false;
 		} else {
 			object_t* obj = get();				
@@ -150,7 +151,7 @@ public:
 		if (_is_null) {
 			return nullptr;
 		}
-		return reinterpret_cast< object_t* >( const_cast<char*>(_object));		
+		return reinterpret_cast< object_t* >( _storage.data());		
 	}
 
 	object_t* operator->(void) const {
@@ -164,20 +165,25 @@ public:
 
 	void construct( void ) {
 		destroy();
-		new (_object) object_t();
+		new (_storage.data()) object_t();
+		_is_null = false;
+	}
+
+	void construct( const object_t& obj ) {
+		destroy();
+		new (_storage.data()) object_t(obj);
 		_is_null = false;
 	}
 
 	void destroy( void ){
 		if (_is_null) 
 			return;			
-		object_t* obj = reinterpret_cast< object_t*>(_object);
+		object_t* obj = reinterpret_cast< object_t*>(_storage.data());
 		obj->~object_t();
 		_is_null = true;
 	}
-
 private:	
-	char _object[sizeof(object_t)];
+	aligned_storage< sizeof(object_t) , 8 > _storage;
 	bool _is_null;
 	/*
 	int bool_type(void)const {return 0;}

@@ -61,23 +61,19 @@ typedef std::basic_string<TCHAR
 #include <rod/tmp/compile_time_error.hpp>
 
 #define STATIC_CHECK( expr , msg ) do{ rod::tmp::compile_time_error< (expr) != 0 > error_##msg;(void)error_##msg;}while(0)
-/*
+
 #if defined( _MSC_VER ) 
 
-#define CACHE_LINE  32
-#define CACHE_ALIGN __declspec(align(CACHE_LINE))
-#define DWORD_ALIGN __declspec(align(4))
-#define QWORD_ALIGN __declspec(align(8))
+#define ROD_CACHE_LINE  32
+#define ROD_ALIGNED( n ) __declspec(align(n))
 
 #else
 
-#define CACHE_LINE 
-#define CACHE_ALIGN 
-#define DWORD_ALIGN 
-#define QWORD_ALIGN 
+#define ROD_CACHE_LINE  -1
+#define ROD_ALIGN( n ) __attribute__ ((aligned(x)))
 
 #endif
-*/
+
 
 #endif
 

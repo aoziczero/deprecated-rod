@@ -77,6 +77,7 @@
     <ClInclude Include="buffer\byte_buffer.hpp" />
     <ClInclude Include="buffer\byte_buffer_ref.hpp" />
     <ClInclude Include="debug\alloc_tracer.hpp" />
+    <ClInclude Include="detail\aligned_storage.hpp" />
     <ClInclude Include="detail\allocator.hpp" />
     <ClInclude Include="detail\nullable.hpp" />
     <ClInclude Include="tmp\compile_time_error.hpp" />

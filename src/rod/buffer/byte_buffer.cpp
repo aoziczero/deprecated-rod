@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include <rod/buffer/byte_buffer.hpp>
-
 #include <cassert>
 
 namespace rod {

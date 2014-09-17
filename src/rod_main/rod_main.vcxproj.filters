@@ -50,5 +50,8 @@
     <ClCompile Include="test_rod_nullable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_rod_aligned_stroage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
