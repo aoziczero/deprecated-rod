@@ -3,9 +3,9 @@
 
 // using std::thread
 namespace rod {
-	namespace threading{
+namespace threading{
 
 
-	}
+}
 }
 #endif

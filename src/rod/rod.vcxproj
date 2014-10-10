@@ -47,7 +47,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>LIB_ROD;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LIB_ROD;WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -63,7 +63,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>LIB_ROD;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LIB_ROD;WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -76,10 +76,14 @@
   <ItemGroup>
     <ClInclude Include="buffer\byte_buffer.hpp" />
     <ClInclude Include="buffer\byte_buffer_ref.hpp" />
+    <ClInclude Include="buffer\circular_buffer.hpp" />
     <ClInclude Include="debug\alloc_tracer.hpp" />
     <ClInclude Include="detail\aligned_storage.hpp" />
     <ClInclude Include="detail\allocator.hpp" />
     <ClInclude Include="detail\nullable.hpp" />
+    <ClInclude Include="time\data_time.hpp" />
+    <ClInclude Include="time\tick.hpp" />
+    <ClInclude Include="time\time_span.hpp" />
     <ClInclude Include="tmp\compile_time_error.hpp" />
     <ClInclude Include="detail\platform_error_category.hpp" />
     <ClInclude Include="buffer\rc_buffer.hpp" />
@@ -94,6 +98,7 @@
   <ItemGroup>
     <ClCompile Include="buffer\byte_buffer.cpp" />
     <ClCompile Include="buffer\byte_buffer_ref.cpp" />
+    <ClCompile Include="buffer\circular_buffer.cpp" />
     <ClCompile Include="buffer\rc_buffer.cpp" />
     <ClCompile Include="detail\allocator.cpp" />
     <ClCompile Include="debug\alloc_tracer.cpp" />
@@ -105,6 +110,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="time\tick.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

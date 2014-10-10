@@ -18,8 +18,6 @@ TEST( aligned_storage , basic ) {
 	EXPECT_TRUE(((uintptr_t)align_16.data() % 16) == 0 );
 }
 
-
-
 TEST( aligned_storage , array ) {
 	rod::aligned_storage< 16 , 16 > align_16[8];
 	for ( int i = 0 ; i < 8 ; ++i ) {
