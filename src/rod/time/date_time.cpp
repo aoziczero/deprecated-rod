@@ -143,14 +143,10 @@ date_time  date_time::operator+ ( const time_span& rhs ) const {
 }
 
 date_time& date_time::operator+=( const time_span& rhs )  {
-	bool is_local = kind() == date_time::kind_type::local;
-	if ( is_local ) {
-		_tick *= -1;
-	}
+	int multi = _tick < 0 ? -1 : 1;
+	_tick *= multi;
 	_tick += rhs.delta();
-	if ( is_local ) {
-		_tick *= -1;
-	}
+	_tick *= multi;
 	return *this;
 }
 
@@ -162,14 +158,10 @@ date_time  date_time::operator- ( const time_span& rhs ) const {
 }
 
 date_time& date_time::operator-=( const time_span& rhs )  {
-	bool is_local = kind() == date_time::kind_type::local;
-	if ( is_local ) {
-		_tick *= -1;
-	}
+	int multi = _tick < 0 ? -1 : 1;
+	_tick *= multi;
 	_tick -= rhs.delta();
-	if ( is_local ) {
-		_tick *= -1;
-	}
+	_tick *= multi;
 	return *this;
 }
 
