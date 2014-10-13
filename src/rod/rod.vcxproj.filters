@@ -78,6 +78,9 @@
     <ClInclude Include="time\tick.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="time\time_util.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -114,6 +117,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="time\tick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="time\date_time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="time\time_span.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="time\time_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
