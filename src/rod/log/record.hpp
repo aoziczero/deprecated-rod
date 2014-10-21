@@ -5,7 +5,7 @@ namespace rod {
 namespace log {
 
 struct record{
-
+	
 };
 
 }}

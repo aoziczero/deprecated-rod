@@ -81,6 +81,8 @@
     <ClInclude Include="detail\aligned_storage.hpp" />
     <ClInclude Include="detail\allocator.hpp" />
     <ClInclude Include="detail\nullable.hpp" />
+    <ClInclude Include="log\record.hpp" />
+    <ClInclude Include="log\tag.hpp" />
     <ClInclude Include="time\data_time.hpp" />
     <ClInclude Include="time\tick.hpp" />
     <ClInclude Include="time\time_util.hpp" />
@@ -105,6 +107,7 @@
     <ClCompile Include="debug\alloc_tracer.cpp" />
     <ClCompile Include="detail\nullable.cpp" />
     <ClCompile Include="detail\platform_error_category.cpp" />
+    <ClCompile Include="log\tag.cpp" />
     <ClCompile Include="rod_config.cpp" />
     <ClCompile Include="rod.cpp" />
     <ClCompile Include="stdafx.cpp">
