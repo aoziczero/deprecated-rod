@@ -7,8 +7,8 @@ namespace rod {
 class date_time{
 public:
 	enum kind_type {
-		utc ,
-		local ,
+		utc , // _tick > 0
+		local , // _tick < 0
 	};
 
 #if defined(_WIN32) || defined(_WIN64)
@@ -37,7 +37,7 @@ public:
 public:
 	date_time( void );
 	date_time( const date_time& rhs );
-	date_time( const int64_t tick);
+	date_time( const int64_t ticks);
 	date_time( const int year 
 			, const int month 
 			, const int day 
@@ -73,7 +73,7 @@ public:
     time_span  operator- ( const date_time& rhs ) const;
 
 
-	void system_time( systemtime& st );
+	void system_time( systemtime& st ) const;
 
 	enum class day_of_the_week {
 		sunday	    = 0, 
@@ -92,10 +92,8 @@ public:
 	int32_t second( void ) const;
 	day_of_the_week wday( void ) const;	
 
-	
-
+	std::string to_string( void ) const ;
 public:
-
 	static date_time from( const filetime& t , const date_time::kind_type k = kind_type::utc );
 	static date_time from( const systemtime& t , const date_time::kind_type k = kind_type::utc );
 	static date_time from( const timespec& t , const date_time::kind_type k = kind_type::utc );
@@ -109,7 +107,7 @@ public:
 	static time_span tz_diff( void );
 private:
 	// microsecond 시간
-	int64_t _tick;
+	int64_t _ticks;
 public:
 	// 윈도우 시간은 1601 / 01 / 01 기준 100ns 당 1씩 증가
 	// 유닉스 시간은 1970 / 01 / 01 기준 1   s 당 1식 증가
@@ -122,6 +120,8 @@ public:
 	static const uint64_t k_epoch_seconds = 11644473600;
 	static const uint64_t k_epoch_ticks = k_epoch_seconds * 1000 * 1000;
 };
+
+
 
 }
 

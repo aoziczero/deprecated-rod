@@ -9,12 +9,12 @@ date_time::date_time( void ) {
 }
 
 date_time::date_time( const date_time& rhs ) 
-	:_tick( rhs._tick )
+	:_ticks( rhs._ticks )
 {	
 }
 
-date_time::date_time( const int64_t tick ) 
-	:_tick( tick )
+date_time::date_time( const int64_t ticks ) 
+	:_ticks( ticks )
 {
 }
 
@@ -28,21 +28,21 @@ date_time::date_time( const int year
 		, const int microsec 
 		, const date_time::kind_type k )
 {
-	_tick = time::util::number_of_days_between( 1970 , year - 1 )
+	_ticks = time::util::number_of_days_between( 1970 , year - 1 )
 		  + time::util::number_of_days_between( year , 1 , month - 1 )
 		  + ( day - 1 );
-	_tick *= 24;
-	_tick += hour;
-	_tick *= 60;
-	_tick += minute;
-	_tick *= 60;
-	_tick += sec;
-	_tick *= 1000;
-	_tick += millisec;
-	_tick *= 1000;
-	_tick += microsec;
+	_ticks *= 24;
+	_ticks += hour;
+	_ticks *= 60;
+	_ticks += minute;
+	_ticks *= 60;
+	_ticks += sec;
+	_ticks *= 1000;
+	_ticks += millisec;
+	_ticks *= 1000;
+	_ticks += microsec;
 	if ( k == date_time::kind_type::local ) {
-		_tick *= -1;
+		_ticks *= -1;
 	}
 }
 
@@ -51,12 +51,12 @@ date_time::~date_time(void) {
 }
 
 const date_time& date_time::operator=( const date_time& rhs ) {
-	_tick = rhs._tick;
+	_ticks = rhs._ticks;
 	return *this;
 }
 
 const date_time::kind_type date_time::kind( void ) const {
-	if ( _tick < 0 ) {
+	if ( _ticks < 0 ) {
 		return date_time::kind_type::local;
 	}
 	return date_time::kind_type::utc;
@@ -65,11 +65,11 @@ const date_time::kind_type date_time::kind( void ) const {
 void date_time::kind( date_time::kind_type k ) {
 	if ( kind() == k )
 		return;
-	_tick *= -1;
+	_ticks *= -1;
 }
 
 const int64_t date_time::tick( void ) const {
-	return abs( _tick );
+	return abs( _ticks );
 }
 
 const date_time date_time::utc_time( void ) const {
@@ -145,11 +145,11 @@ date_time  date_time::operator+ ( const time_span& rhs ) const {
 date_time& date_time::operator+=( const time_span& rhs )  {
 	bool is_local = kind() == date_time::kind_type::local;
 	if ( is_local ) {
-		_tick *= -1;
+		_ticks *= -1;
 	}
-	_tick += rhs.delta();
+	_ticks += rhs.delta();
 	if ( is_local ) {
-		_tick *= -1;
+		_ticks *= -1;
 	}
 	return *this;
 }
@@ -164,11 +164,11 @@ date_time  date_time::operator- ( const time_span& rhs ) const {
 date_time& date_time::operator-=( const time_span& rhs )  {
 	bool is_local = kind() == date_time::kind_type::local;
 	if ( is_local ) {
-		_tick *= -1;
+		_ticks *= -1;
 	}
-	_tick -= rhs.delta();
+	_ticks -= rhs.delta();
 	if ( is_local ) {
-		_tick *= -1;
+		_ticks *= -1;
 	}
 	return *this;
 }
@@ -180,7 +180,7 @@ time_span  date_time::operator- ( const date_time& rhs ) const {
 	return time_span(utc_time().tick() - rhs.utc_time().tick());
 }
 
-void date_time::system_time( systemtime& st ) {
+void date_time::system_time( systemtime& st ) const {
 	int64_t tick = this->tick();
 	tick /= 1000;
 	st.wMilliseconds = tick % 1000;
@@ -285,6 +285,32 @@ date_time::day_of_the_week date_time::wday( void ) const{
 	// 0 day thursday
 	int64_t tick_day = this->tick() / ( (int64_t)1000 * 1000 * 60 * 60 * 24 ) + 4;
 	return static_cast< date_time::day_of_the_week >( tick_day % 7 );
+}
+
+std::string date_time::to_string( void ) const {
+	date_time::systemtime st;
+	system_time( st );
+	char buffer[1024];
+	#if defined( _WIN32 )
+		sprintf_s( buffer , "%04d%02d%02d %02d%02d%02d %04d"
+			, st.wYear 
+			, st.wMonth 
+			, st.wDay
+			, st.wHour
+			, st.wMinute 
+			, st.wSecond 
+			, st.wMilliseconds );
+	#else
+		sprintf( buffer , "%04d%02d%02d %02d%02d%02d %04d"
+			, st.wYear 
+			, st.wMonth 
+			, st.wDay
+			, st.wHour
+			, st.wMinute 
+			, st.wSecond 
+			, st.wMilliseconds );
+	#endif
+	return std::string(buffer);
 }
 
 date_time date_time::from( const filetime& t , const date_time::kind_type k) {
