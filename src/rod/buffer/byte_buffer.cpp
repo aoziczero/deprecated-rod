@@ -148,4 +148,17 @@ std::size_t byte_buffer::write(void* src, const std::size_t sz){
 	return wr_ptr(cpysize);
 }
 
+byte_buffer::position byte_buffer::current_position( void ) const {
+	byte_buffer::position p;
+	p.rd_pos = _rd_pos;
+	p.wr_pos = _wr_pos;
+	return p;
+}
+
+void     byte_buffer::seek_position( const byte_buffer::position& p ) {
+// todo boundery check
+	_rd_pos = p.rd_pos;
+	_wr_pos = p.wr_pos;
+}
+
 }}

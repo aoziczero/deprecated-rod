@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace rod.net
+namespace Rod.Net
 {
     public class Class1
     {

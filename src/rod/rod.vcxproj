@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="application.hpp" />
     <ClInclude Include="buffer\byte_buffer.hpp" />
     <ClInclude Include="buffer\byte_buffer_ref.hpp" />
     <ClInclude Include="buffer\circular_buffer.hpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="tmp\is_bool.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="application.cpp" />
     <ClCompile Include="buffer\byte_buffer.cpp" />
     <ClCompile Include="buffer\byte_buffer_ref.cpp" />
     <ClCompile Include="buffer\circular_buffer.cpp" />

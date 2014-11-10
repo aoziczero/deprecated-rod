@@ -9,6 +9,11 @@ namespace buffer{
 // refrence counted
 class byte_buffer{
 public:
+	struct position {
+		std::size_t rd_pos;
+		std::size_t wr_pos;
+	};
+public:
 	explicit byte_buffer( const std::size_t cap);
 	byte_buffer(const byte_buffer& rhs);
 	byte_buffer(byte_buffer&& rhs);
@@ -45,6 +50,10 @@ public:
 	std::size_t read(void* dst , const std::size_t sz );
 	std::size_t peak(void* dst , const std::size_t sz );
 	std::size_t write( void* src , const std::size_t sz );
+
+
+	position current_position( void ) const;
+	void     seek_position( const position& p );
 private:
 	rod::buffer::rc_buffer _buffer;
 	std::size_t _rd_pos;
