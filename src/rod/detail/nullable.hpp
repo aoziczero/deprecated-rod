@@ -65,7 +65,7 @@ public:
 	{
 		if (_is_null) {
 			new (_storage.data()) object_t(rhs);
-			_is_null = false;			
+			_is_null = false;
 		} else {
 			object_t* obj = get();
 			*obj = rhs;
